@@ -32,33 +32,37 @@ An elegant, keyboard-driven terminal checklist and task manager built with [Ink]
 
 ## ✨ Features
 
-- ⚡ **Lightweight & Fast**: Instant launch directly inside your terminal shell.
+- ⚡ **Lightweight & Fast**: Launches instantly in your terminal.
 - ⌨️ **Vim & Arrow Key Navigation**: Navigate seamlessly using arrows or standard `j` / `k` keys.
-- 💾 **Automatic Local Persistence**: All changes persist automatically to `~/.checklist-tasks.json`, so your list stays intact across sessions and projects.
+- 💾 **Automatic Local Persistence**: All changes save automatically to `~/.checklist-tasks.json`, so your list stays intact across sessions and directories.
 - 📊 **Live Progress Tracking**: Real-time completion counter and percentage indicator.
 - 📝 **Inline Task Creation**: Create tasks on the fly with a built-in interactive input prompt.
-- 🎓 **Educational Source Code**: Every file is thoroughly annotated with star-block comments (`/** ... */`) explaining how Ink, Yoga Flexbox layout, terminal hooks, and CLI inputs function.
+- 🎓 **Educational Source Code**: Every file is thoroughly documented with star-block comments (`/** ... */`) explaining how Ink, Yoga Flexbox layout, terminal hooks, and CLI inputs function.
 
 ---
 
-## 🚀 Installation & Usage
+## 🚀 Quick Start & Usage
 
-### Run Directly via NPX (No installation needed)
+### 1. Run as a Global Command (Recommended)
 
-```bash
-npx checklist-cli
-```
-
-### Install Globally
-
-```bash
-npm install --global checklist-cli
-```
-
-Once installed, simply run:
+When you initialize the project with `create-ink-app`, a local symlink is created automatically. You can launch the CLI from any terminal session:
 
 ```bash
 checklist-cli
+```
+
+> **Note:** If the command is not recognized, link it to your global Node environment by running `npm link` inside the project folder.
+
+### 2. Run Directly from Source
+
+You can also build and run the compiled output directly:
+
+```bash
+# Compile TypeScript
+pnpm run build
+
+# Launch the CLI
+node dist/cli.js
 ```
 
 ---
@@ -73,46 +77,34 @@ checklist-cli
 | `a`                     | Enter **Add Mode** to create a new task |
 | `Enter` _(in Add Mode)_ | Save new task                           |
 | `Esc` _(in Add Mode)_   | Cancel and return to list               |
-| `d` or `x`              | Delete the currently selected task      |
+| `d` or `x`              | Delete currently selected task          |
 | `c`                     | Clear all completed tasks               |
 | `q` or `Esc`            | Gracefully quit the application         |
 
 ---
 
-## 📂 Storage & Data Location
+## 📂 Storage & Persistence
 
-Your checklist items are automatically saved in your user home directory:
+Your checklist items are saved automatically to your user home directory:
 
 ```text
 ~/.checklist-tasks.json
 ```
 
-Because it saves to your home folder, you can run `checklist-cli` from any working directory and always see your personal task list. If the file does not exist yet, default onboarding tasks will guide you on your first launch.
+Because it saves to your home folder, you can run `checklist-cli` from any directory on your computer and always see your personal task list. If the file does not exist yet, default onboarding tasks will guide you on your first launch.
 
 ---
 
 ## 🛠️ Development
 
-### Prerequisites
-
-- Node.js `>= 16`
-- `pnpm` or `npm`
-
 ### Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/vadimdemedes/checklist-cli.git
-cd checklist-cli
-
 # Install dependencies
 pnpm install
 
-# Start TypeScript compiler in watch mode
+# Watch mode for rapid development
 pnpm run dev
-
-# Run the compiled CLI locally
-node dist/cli.js
 ```
 
 ### Testing & Code Quality
@@ -124,6 +116,22 @@ pnpm test
 # Build production bundle
 pnpm run build
 ```
+
+---
+
+## 📦 Publishing to npm (Optional)
+
+If you plan to publish this package to the public npm registry for others to install:
+
+1. Update the `"name"` field in `package.json` with a unique or scoped name (e.g., `@yourusername/checklist-cli`).
+2. Log into npm:
+   ```bash
+   npm login
+   ```
+3. Publish:
+   ```bash
+   npm publish --access public
+   ```
 
 ---
 
